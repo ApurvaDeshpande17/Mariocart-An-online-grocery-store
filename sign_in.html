@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Mariocart - Sign in 
+        </title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="/static/lib/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/base.css">
+
+        <script src="/static/lib/jquery/jquery.min.js"></script>
+        <script src="/static/lib/popper/popper.min.js"></script>
+        <script src="/static/lib/bootstrap/bootstrap.min.js"></script>
+        
+    </head>
+
+    <body>
+        {% block content %}
+
+        {% if message %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+        {% endif %}
+
+        <div class="text-right" style="padding-top: 1rem; padding-right: 1rem;">
+            <button id="close-button" type="button" class="btn-close" aria-label="Close" style="color: red; font-size: large;">&times;</button>
+            <script type="text/javascript">
+                document.getElementById("close-button").onclick = function () {
+                    location.href = "/";
+                };
+            </script> 
+        </div>
+
+        <div class="text-center" style="padding-bottom: 2rem;">
+            <a>Sign in</a>
+        </div> 
+
+        <section class="sign-in-or-create-account">
+
+            <div class="text-center">
+                <h1 class="jumbotron-heading">Mariocart</h1>
+            </div>
+            <form action="/sign_in" method="POST">
+            <div class="mx-auto" style="width: 300px; padding-top: 1.5rem;">
+                <label>Email</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><img src="/static/img/icons/email.svg" style="width: 22px; height: 22px;"></span>
+                    </div>
+                    <input name="email" type="email" id="email-input" class="form-control" placeholder="Your email address">
+                </div>
+                <label>Password</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><img src="/static/img/icons/password.svg" style="width: 20px; height: 20px;"></span>
+                    </div>
+                    <input name="password" type="password" id="password-input" class="form-control" placeholder="Your password">
+                </div> 
+                
+                <button class="btn btn-secondary my-2 mr-2" style="width: 300px; font-size: small;" type="submit">Sign in</button>
+                <hr style="max-width: 50%; background-color: black;">
+                <p>
+                    <a style="font-size: small;">Don't have an Account? <a href="/create_account">Register here</a></a>
+                </p>
+            </div>
+        </form>
+        </section>
+
+        {% endblock %}
+    </body>
+</html>
