@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% set active = "Categories" %}
+
+{% block title %}
+Categories
+{% endblock %}
+
+{% block content %}
+<script>
+  let user;
+  let cart_quantity = {{ session['cart_quantity']|default(0)|tojson }};
+  {% if session['user'] %}
+      user = "{{ session['user'] }}";
+  {% else %}
+      user = null;
+  {% endif %}
+</script>
+
+<script src="/static/js/productDetail.js"></script>
+  <ul>
+    {% for category in data %}
+    <li>
+        <img src=" {{ url_for('static', filename='img/categories/' + category.image) }} " alt=" {{ category['name'] }} " style="height: 100px; width: 100px; padding: 1.5rem;">
+        <a style="font-size: large; color: black;" href="{{ url_for('products', categoryid=category.categoryid) }}">{{ category.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

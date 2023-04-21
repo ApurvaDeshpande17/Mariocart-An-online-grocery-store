@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% set active = "Products" %}
+
+{% block header %}
+<script src="/static/js/productViewer.js"></script>
+{% endblock %}
+
+{% block title %}
+{% for data in data %}
+    {% for category in category %}
+        {{ category.name }}
+    {% endfor %}
+{% endfor %}
+{% endblock %}
+
+{% block content %}
+
+<img src="static/img/background/produce.jpg" class="img-fluid">
+<div id="cards"  style="padding: 1rem;">
+</div>
+
+<script>
+    let user;
+    let cart_quantity = {{ session['cart_quantity']|default(0)|tojson }};
+    {% if session['user'] %}
+        user = "{{ session['user'] }}";
+    {% else %}
+        user = null;
+    {% endif %}
+
+    $(() => {
+        const productViewer = new ProductViewer(3, 4);
+        productViewer.load('{{ request.args.get("categoryid") }}');
+    });
+</script>
+
+{% endblock %}
